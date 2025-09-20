@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Анимированный логотип */
+.logo-container {
+    margin-bottom: 40px;
+}
+
+.logo-animation {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    perspective: 1000px;
+}
+
+.letter {
+    font-size: 4em;
+    font-weight: 900;
+    color: white;
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 30px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    transform: translateY(50px) rotateX(-90deg);
+    animation: letterAppear 0.8s ease-out forwards;
+}
+
+.letter.g { animation-delay: 0.1s; }
+.letter.o { animation-delay: 0.2s; }
+.letter.t { animation-delay: 0.3s; }
+.letter.t2 { animation-delay: 0.4s; }
+.letter.o2 { animation-delay: 0.5s; }
+.letter.space { width: 20px; }
+.letter.g2 { animation-delay: 0.7s; }
+.letter.o3 { animation-delay: 0.8s; }
+
+@keyframes letterAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(-90deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) rotateX(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+        text-shadow: 
+            0 0 20px #ff00ff,
+            0 0 30px #ff00ff,
+            0 0 40px #ff00ff,
+            0 0 70px #ff00ff;
+    }
+}
+
+/* Заголовок */
+.main-title {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-out 1.5s forwards;
+    opacity: 0;
+}
+
+/* Контейнер для изображения */
+.image-container {
+    position: relative;
+    margin: 40px auto;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: scaleIn 1s ease-out 2s forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover .main-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 20px;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+/* Контент */
+.content {
+    margin-top: 40px;
+    animation: fadeInUp 1s ease-out 2.5s forwards;
+    opacity: 0;
+}
+
+.content p {
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .logo-animation {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .letter {
+        font-size: 2.5em;
+    }
+    
+    .main-title {
+        font-size: 2em;
+    }
+    
+    .content p {
+        font-size: 1.1em;
+    }
+    
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+    
+    .letter {
+        font-size: 2em;
+    }
+    
+    .main-title {
+        font-size: 1.5em;
+    }
+    
+    .image-container {
+        margin: 20px auto;
+    }
+}
