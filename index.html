@@ -1,44 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gotto Go - Animated Logo</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <title>Gotto Go - IT информация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a2a, #1a1a3a);
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #4a1e8c, #6a2cc9);
+            padding: 15px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(135, 60, 255, 0.7);
+            letter-spacing: 2px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease;
+            padding: 20px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        #welcome-page {
+            background: linear-gradient(135deg, #2c1b67, #4a2a9e);
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        #welcome-page h2 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(135, 60, 255, 0.8);
+            color: #ffffff;
+        }
+        
+        #welcome-page p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #6a2cc9, #8a4fff);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(90deg, #8a4fff, #6a2cc9);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .category-card {
+            background: linear-gradient(135deg, #1e1e4a, #2d2d6b);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .category-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #a57fff;
+        }
+        
+        .category-card p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #d0d0ff;
+        }
+        
+        .content-section {
+            background: linear-gradient(135deg, #1e1e4a, #2d2d6b);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #a57fff;
+            border-bottom: 2px solid #6a2cc9;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .content-section ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .back-btn {
+            background: linear-gradient(90deg, #4a1e8c, #6a2cc9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: linear-gradient(90deg, #6a2cc9, #4a1e8c);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            
+            #welcome-page h2 {
+                font-size: 2.5rem;
+            }
+            
+            #welcome-page p {
+                font-size: 1.2rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Gotto Go</h1>
+    </div>
+    
     <div class="container">
-        <!-- Анимированный логотип -->
-        <div class="logo-container">
-            <div class="logo-animation">
-                <span class="letter g">G</span>
-                <span class="letter o">o</span>
-                <span class="letter t">t</span>
-                <span class="letter t2">t</span>
-                <span class="letter o2">o</span>
-                <span class="letter space"></span>
-                <span class="letter g2">G</span>
-                <span class="letter o3">o</span>
+        <!-- Приветственная страница -->
+        <div id="welcome-page" class="page active">
+            <h2>Добро пожаловать в Gotto Go!</h2>
+            <p>Исследуйте мир информационных технологий, программирования, кибербезопасности и этичного хакинга. Получите знания, которые откроют перед вами новые возможности!</p>
+            <button class="btn" onclick="showPage('categories-page')">Начать изучение</button>
+        </div>
+        
+        <!-- Страница с категориями -->
+        <div id="categories-page" class="page">
+            <h2>Выберите категорию для изучения</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showPage('programming-page')">
+                    <h3>Программирование</h3>
+                    <p>Искусство создания программ и приложений с помощью языков программирования. Изучите основы и продвинутые техники кодирования.</p>
+                </div>
+                <div class="category-card" onclick="showPage('hacking-page')">
+                    <h3>Хакинг</h3>
+                    <p>Этичный хакинг - исследование систем на предмет уязвимостей с целью их устранения. Узнайте о методах и инструментах тестирования на проникновение.</p>
+                </div>
+                <div class="category-card" onclick="showPage('cybersecurity-page')">
+                    <h3>Кибербезопасность</h3>
+                    <p>Защита систем, сетей и программ от цифровых атак. Изучите как обеспечить безопасность данных и противостоять киберугрозам.</p>
+                </div>
             </div>
         </div>
-
-        <!-- Заголовок -->
-        <h1 class="main-title">telegram </h1>
-
-        <!-- Ваше изображение -->
-        <div class="image-container">
-            <img src="1000000389.jpg" alt="Gotto Go Pattern" class="main-image">
-            <div class="image-overlay">Уникальный дизайн Gotto Go</div>
+        
+        <!-- Страница программирования -->
+        <div id="programming-page" class="page">
+            <div class="content-section">
+                <h2>Что такое программирование?</h2>
+                <p>Программирование — это процесс создания компьютерных программ. С помощью языков программирования разработчики пишут инструкции, которые компьютер выполняет для решения различных задач.</p>
+                
+                <h2>Как используется программирование?</h2>
+                <p>Программирование используется практически во всех сферах современной жизни:</p>
+                <ul>
+                    <li>Создание веб-сайтов и веб-приложений</li>
+                    <li>Разработка мобильных приложений</li>
+                    <li>Создание игр для различных платформ</li>
+                    <li>Автоматизация бизнес-процессов</li>
+                    <li>Анализ данных и машинное обучение</li>
+                    <li>Разработка операционных систем и драйверов</li>
+                </ul>
+                
+                <h2>Популярные языки программирования</h2>
+                <ul>
+                    <li>Python - универсальный язык для веб-разработки, анализа данных и искусственного интеллекта</li>
+                    <li>JavaScript - основной язык для создания интерактивных веб-страниц</li>
+                    <li>Java - популярный язык для корпоративных приложений и разработки под Android</li>
+                    <li>C# - язык для разработки игр на Unity и Windows-приложений</li>
+                    <li>C++ - используется для создания высокопроизводительных приложений и игр</li>
+                </ul>
+                
+                <button class="back-btn" onclick="showPage('categories-page')">Назад к категориям</button>
+            </div>
         </div>
-
-        <!-- Описание -->
-        <div class="content">
-            <p>Инновационный подход к современным технологиям</p>
-            <button class="cta-button">Начать путешествие</button>
+        
+        <!-- Страница хакинга -->
+        <div id="hacking-page" class="page">
+            <div class="content-section">
+                <h2>Что такое этичный хакинг?</h2>
+                <p>Этичный хакинг (или White Hat hacking) — это легальная практика взлома компьютерных систем и сетей с целью обнаружения уязвимостей, которые затем могут быть устранены до того, как ими воспользуются злоумышленники.</p>
+                
+                <h2>Основные области этичного хакинга</h2>
+                <ul>
+                    <li>Тестирование на проникновение (Penetration Testing)</li>
+                    <li>Аудит безопасности приложений и сетей</li>
+                    <li>Анализ вредоносного программного обеспечения</li>
+                    <li>Расследование киберпреступлений</li>
+                    <li>Разработка и внедрение мер защиты</li>
+                </ul>
+                
+                <h2>Инструменты этичного хакера</h2>
+                <ul>
+                    <li>Nmap - сканер сетей для обнаружения хостов и служб</li>
+                    <li>Wireshark - анализатор сетевых протоколов</li>
+                    <li>Metasploit - фреймворк для тестирования на проникновение</li>
+                    <li>Burp Suite - платформа для тестирования веб-безопасности</li>
+                    <li>John the Ripper - инструмент для взлома паролей</li>
+                </ul>
+                
+                <button class="back-btn" onclick="showPage('categories-page')">Назад к категориям</button>
+            </div>
+        </div>
+        
+        <!-- Страница кибербезопасности -->
+        <div id="cybersecurity-page" class="page">
+            <div class="content-section">
+                <h2>Что такое кибербезопасность?</h2>
+                <p>Кибербезопасность — это практика защиты систем, сетей и программ от цифровых атак. Эти атаки обычно направлены на получение доступа к конфиденциальной информации, ее изменение или уничтожение, вымогательство денег у пользователей или нарушение нормальной работы бизнес-процессов.</p>
+                
+                <h2>Основные принципы кибербезопасности</h2>
+                <ul>
+                    <li>Конфиденциальность - защита данных от несанкционированного доступа</li>
+                    <li>Целостность - обеспечение точности и полноты данных</li>
+                    <li>Доступность - гарантия доступа к информации авторизованным пользователям</li>
+                    <li>Аутентификация - проверка подлинности пользователей и систем</li>
+                    <li>Авторизация - предоставление прав на выполнение определенных действий</li>
+                </ul>
+                
+                <h2>Основные угрозы кибербезопасности</h2>
+                <ul>
+                    <li>Вредоносное ПО (вирусы, трояны, ransomware)</li>
+                    <li>Фишинг и социальная инженерия</li>
+                    <li>Атаки типа "отказ в обслуживании" (DDoS)</li>
+                    <li>Взлом паролей и атаки методом грубой силы</li>
+                    <li>Уязвимости нулевого дня (Zero-day)</li>
+                </ul>
+                
+                <h2>Средства защиты</h2>
+                <ul>
+                    <li>Брандмауэры (Firewalls)</li>
+                    <li>Антивирусное программное обеспечение</li>
+                    <li>Системы обнаружения и предотвращения вторжений (IDS/IPS)</li>
+                    <li>Виртуальные частные сети (VPN)</li>
+                    <li>Шифрование данных</li>
+                    <li>Многофакторная аутентификация</li>
+                </ul>
+                
+                <button class="back-btn" onclick="showPage('categories-page')">Назад к категориям</button>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function showPage(pageId) {
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Показать выбранную страницу
+            document.getElementById(pageId).classList.add('active');
+            
+            // Прокрутить к верху страницы
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
